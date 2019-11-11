@@ -2,9 +2,59 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
-        <title></title>
+        <title>BLog</title>
+
+        <!-- BootStrap theme -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+        <!-- Medium style editor -->
+        <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville|Lobster&display=swap" rel="stylesheet">
+
+
     </head>
     <body>
-
+        <nav class="navbar navbar-expand-lg navbar-light bg-light techfont">
+            <a href="{% url 'post_list' %}" class="navbar-brand bigbrand">My Blog</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+                    <li class="nav-item active"><a class="nav-link" href="https://www.github.com">Github</a></li>
+                    <li class='nav-item active'><a class="nav-link" href="https://www.linkedin.com">Linkedin</a></li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item active"><a href="{% url 'post_new' %}" class="nav-link">New Post</a></li>
+                    <li class="nav-item active"><a href="{% url 'post_draft_list' %}" class="nav-link">Drafts</a></li>
+                    <li class="nav-item active"><a href="{% url 'logout' %}" class="nav-link">Log Out</a></li>
+                    <li><a>Welcome: {{user.username }}</a></li>
+                    {% else %}
+                    <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-user"></span></a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+        <div class="content container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="blog_posts">
+                        {% block content %}
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
