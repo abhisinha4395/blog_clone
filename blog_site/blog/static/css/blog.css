@@ -5,6 +5,7 @@
   animation:hue 10000ms infinite linear;
 
 }
+
 @keyframes spinify {
   0% {
     transform: translate(0px,0px);
@@ -46,4 +47,28 @@ font-family: 'Lobster', cursive;
 
 .bigbrand{
     font-size: 1.5em;
+}
+
+.centerstage{
+    margin: auto;
+}
+
+.postdate{
+    text-align: center;
+}
+
+.posttitle{
+    font-family: 'Libre', sans-serif;
+    font-size: 3em;
+    text-align: center;
+}
+
+.postcontent{
+    font-family: cursive;
+    font-size: 1.5em;
+}
+
+.btn-comment{
+    position: absolute;
+    right: 0px;
 }

@@ -1,8 +1,9 @@
+{% load static from staticfiles %}
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
-        <title>BLog</title>
+        <title>Blog</title>
 
         <!-- BootStrap theme -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -20,9 +21,12 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville|Lobster&display=swap" rel="stylesheet">
 
+        <!-- Google material icons-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 
     </head>
-    <body>
+    <body class="loader">
         <nav class="navbar navbar-expand-lg navbar-light bg-light techfont">
             <a href="{% url 'post_list' %}" class="navbar-brand bigbrand">My Blog</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,9 +43,12 @@
                     <li class="nav-item active"><a href="{% url 'post_new' %}" class="nav-link">New Post</a></li>
                     <li class="nav-item active"><a href="{% url 'post_draft_list' %}" class="nav-link">Drafts</a></li>
                     <li class="nav-item active"><a href="{% url 'logout' %}" class="nav-link">Log Out</a></li>
-                    <li><a>Welcome: {{user.username }}</a></li>
+                    <li class="nav-item active"><a class="navbar-text">Welcome: {{user.username }}</a></li>
                     {% else %}
-                    <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-user"></span></a></li>
+                    <!-- <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-user"></span></a></li> -->
+                    <li><a href="{% url 'login' %}">
+                        <i class="material-icons">perm_identity</i>
+                    </a></li>
                     {% endif %}
                 </ul>
             </div>

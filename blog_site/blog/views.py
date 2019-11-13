@@ -7,13 +7,13 @@ from django.views.generic import (TemplateView, ListView, DetailView,
 from django.urls import reverse_lazy
 
 from blog.models import Comment, Post
-from blog.forms import PostForm
+from blog.forms import PostForm, CommentForm
 
 # Create your views here.
 class AboutView(TemplateView):
     template_name="about.html"
 
-class PostListView(ListVIew):
+class PostListView(ListView):
     model = Post
 
     def get_queryset(self):
@@ -62,7 +62,7 @@ def add_comment_to_post(request, pk):
 
 @login_required
 def comment_approve(request, pk):
-    post = get_object_or_404(Comment, pk=pk)
+    comment = get_object_or_404(Comment, pk=pk)
     comment.approve()
     return redirect('post_detail', pk=comment.post.pk)
 

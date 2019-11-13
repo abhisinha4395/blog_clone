@@ -9,9 +9,9 @@
         <p>Invalid Username or Password</p>
     {% endif %}
 
-    <form action="{% URL 'login' %}" method="post">
+    <form action="{% url 'login' %}" method="post">
         {% csrf_token %}
-        {% form.as_p %}
+        {{form.as_p }}
         <input type="submit" class="btn btn-primary" value="Login">
         <input type="hidden" class="next" value="{{next}}">
     </form>
